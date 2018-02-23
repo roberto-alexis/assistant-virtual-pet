@@ -1,0 +1,927 @@
+{
+  "petTypes" : [
+    {
+      "reactions": [
+        {
+          "intent": "input.welcome",
+          "responses": [
+            {
+              "condition": {
+                "op": "and",
+                "params": [
+                  {
+                    "op": "notExists",
+                    "params": [
+                      "{{context.expecting}}"
+                    ]
+                  },
+                  {
+                    "op": "notExists",
+                    "params": [
+                      "{{knowledge.owner_name}}"
+                    ]
+                  }
+                ]
+              },
+              "responses": [
+                "introduceYourself"
+              ]
+            },
+            {
+              "condition": {
+                "op": "notExists",
+                "params": [
+                  "{{context.expecting}}"
+                ]
+              },
+              "responses": [
+                "welcomeBack"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.expecting}}",
+                  "owner_name"
+                ]
+              },
+              "responses": [
+                "introduceYourselfAgain"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.expecting}}",
+                  "food"
+                ]
+              },
+              "responses": [
+                "changingConversationFromFood"
+              ]
+            }
+          ],
+          "defaultResponses": [
+            "helloAgainInConversation",
+            "helloMaybeSomeoneElse"
+          ]
+        },
+        {
+          "intent": "input.introduction",
+          "responses": [
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.expecting}}",
+                  "owner_name"
+                ]
+              },
+              "responses": [
+                "acknowledgeName",
+                "confirmName"
+              ]
+            }
+          ],
+          "defaultResponses": [
+            "unexpectedName"
+          ]
+        },
+        {
+          "intent": "input.food_offering",
+          "responses": [
+            {
+              "condition": {
+                "op": "and",
+                "params": [
+                  {
+                    "op": "==",
+                    "params": [
+                      "{{context.expecting}}",
+                      "food"
+                    ]
+                  },
+                  {
+                    "op": "in",
+                    "params": [
+                      "{{params.food}}",
+                      "bone",
+                      "meat",
+                      "pasta"
+                    ]
+                  }
+                ]
+              },
+              "responses": [
+                "startEatingOfferedFood"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.expecting}}",
+                  "food"
+                ]
+              },
+              "responses": [
+                "iDontLikeThatFood"
+              ]
+            }
+          ],
+          "defaultResponses": [
+            "unexpectedFood"
+          ]
+        },
+        {
+          "intent": "input.good_day_description",
+          "responses": [
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.expecting}}",
+                  "day_description"
+                ]
+              },
+              "responses": [
+                "learnAboutGoodDay"
+              ]
+            }
+          ],
+          "defaultResponses": [
+            "unexpectedDayDescription"
+          ]
+        },
+        {
+          "intent": "input.yes",
+          "responses": [
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "confirm_owner_name"
+                ]
+              },
+              "responses": [
+                "nameConfirmed"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "feeding_confirmation"
+                ]
+              },
+              "responses": [
+                "thankingForFeeding"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "cheer_up"
+                ]
+              },
+              "responses": [
+                "howToChearUp"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "whats_in_letter"
+                ]
+              },
+              "responses": [
+                "tellAboutLetter"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "food"
+                ]
+              },
+              "responses": [
+                "whatsToEat"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "fleas"
+                ]
+              },
+              "responses": [
+                "nameFleas"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "chips"
+                ]
+              },
+              "responses": [
+                "eatChipsToo"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "coming_inside_wet"
+                ]
+              },
+              "responses": [
+                "wetEverything"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "cat_nine_lives"
+                ]
+              },
+              "responses": [
+                "areDogLivesBetter"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "leaving"
+                ]
+              },
+              "responses": [
+                "askToStay"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "chasing_tail"
+                ]
+              },
+              "responses": [
+                "askAboutChasingTails"
+              ]
+            }
+          ]
+        },
+        {
+          "intent": "input.no",
+          "responses": [
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "confirm_owner_name"
+                ]
+              },
+              "responses": [
+                "ifNotWhatsYourName"
+              ]
+            },
+            {
+              "condition": {
+                "op": "==",
+                "params": [
+                  "{{context.for_question}}",
+                  "feeding_confirmation"
+                ]
+              },
+              "responses": [
+                "stillHungry"
+              ]
+            }
+          ],
+          "defaultResponses": [
+            "changeSubject"
+          ]
+        }
+      ],
+      "defaultResponses": [
+        {
+          "condition": {
+            "op": "==",
+            "params": [
+              "{{context.expecting}}",
+              "food"
+            ]
+          },
+          "responses": [
+            "pendingFood"
+          ]
+        },
+        {
+          "condition": {
+            "op": "==",
+            "params": [
+              "{{context.expecting}}",
+              "owner_name"
+            ]
+          },
+          "responses": [
+            "pendingIntroduction"
+          ]
+        },
+        {
+          "condition": {
+            "op": "==",
+            "params": [
+              "{{context.expecting}}",
+              "day_description"
+            ]
+          },
+          "responses": [
+            "pendingDayDescription"
+          ]
+        },
+        {
+          "responses": [
+            "finishing"
+          ]
+        }
+      ],
+      "continuations": [
+        {
+          "condition": "{{conditions.nothing_pending}}",
+          "responses": [
+            "startDayDescription",
+            "whatsToEat",
+            "startCheeringUp",
+            "startReceivedALetter",
+            "startImHungry",
+            "startFleasConversation",
+            "startChipsConversation",
+            "startBeingWetConversation",
+            "startCatLivesConversation",
+            "startWorkConversation",
+            "startChasingTailConversation"
+          ]
+        }
+      ],
+      "name": "Male happy dog",
+      "responses": {
+        "introduceYourself": {
+          "messages": [
+            "Oh, my god! You are here! I'm your loyal pet {{pet.name}}. I'm here to make you company and have fun together. What's your name?",
+            "Hello! My name is {{pet.name}}. I'm here to make you company and have fun together. May I know your name?",
+            "Hi! I'm {{pet.name}}. So nice to meet you. Can you tell me your name?",
+            "Welcome! My name is {{pet.name}} and I'm here to make you company. What's your name?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "owner_name"
+              }
+            }
+          ]
+        },
+        "introduceYourselfAgain": {
+          "messages": [
+            "Hello again! I'm {{pet.name}}. Can I know your name please?",
+            "Hi hi hi stranger! I would love to know your name"
+          ]
+        },
+        "introduceYourselfConfirmHiName": {
+          "messages": [
+            "Is '{{params.greeting}}' your real name? That's a very peculiar name! But, what would I know. I'm just {{pet.name}}, and I only know how to bark.",
+            "Your name is '{{params.greeting}}'? I thought {{pet.name}} was already a weird name.",
+            "Hi '{{params.greeting}}'! Nice to meet you! Is '{{params.greeting}}' your real name?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "confirm_owner_name",
+                "potential_answer": "{{params.greeting}}"
+              }
+            }
+          ]
+        },
+        "acknowledgeName": {
+          "messages": [
+            "So nice to meet you, {{knowledge.owner_name}}",
+            "Really nice to meet you, {{knowledge.owner_name}}",
+            "I'm so thrilled to meet you, {{knowledge.owner_name}}",
+            "Hi {{knowledge.owner_name}}! So nice to meet you!",
+            "Hello hello, {{knowledge.owner_name}}. I'm so glad to meet you!",
+            "What an awesome name {{knowledge.owner_name}}! I really like it!. {{pet.name}} and {{params.given-name}}. Friends forever!",
+            "What a great name! I'm so glad to meet you {{knowledge.owner_name}}"
+          ],
+          "edits": [
+            {
+              "put": "knowledge",
+              "values": {
+                "owner_name": "{{params.given-name}}"
+              }
+            },
+            {
+              "clear": "context"
+            }
+          ]
+        },
+        "confirmName": {
+          "messages": [
+            "Sorry, I was so happy to meet you that I didn't pay attention. Did you say {{knowledge.owner_name}}?",
+            "So nice to meet you, {{knowledge.owner_name}}! I got your name right?"
+          ],
+          "edits": [
+            {
+              "put": "knowledge",
+              "values": {
+                "owner_name": "{{params.given-name}}"
+              }
+            }, {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "confirm_owner_name",
+                "potential_answer": "{{params.given-name}}"
+              }
+            }
+          ]
+        },
+        "nameConfirmed": {
+          "messages": [
+            "Excellent! Again, I will love hanging out with you {{knowledge.owner_name}}",
+            "Amazing!",
+            "Great!"
+          ],
+          "edits": [
+            {
+              "put": "knowledge",
+              "values": {
+                "owner_name": "{{context.potential_answer}}"
+              }
+            },
+            {
+              "clear": "context"
+            }
+          ]
+        },
+        "welcomeBack": {
+          "messages": [
+            "Welcome back {{knowledge.owner_name}}!",
+            "Hello {{knowledge.owner_name}}! Welcome back!",
+            "Good morning {{knowledge.owner_name}}",
+            "Hello! Welcome back!",
+            "Hey hey! Nice to have you back."
+          ]
+        },
+        "startDayDescription": {
+          "messages": [
+            "So... how was your day today?",
+            "How is your day going?",
+            "Tell me about your day"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "day_description"
+              }
+            }
+          ]
+        },
+        "pendingDayDescription": {
+          "messages": [
+            "You were going to tell me about your day",
+            "How was your day?",
+            "Tell me about your day",
+            "So... how is your day going?",
+            "Would you tell me about your day?"
+          ]
+        },
+        "whatsToEat": {
+          "messages": [
+            "I'm hungry!, you know. What's for dinner?",
+            "I just finished my last bone. What do you have to eat?",
+            "I'm so hungry! What can you give me to chew?",
+            "I'm so hungry! Can you pass me something to eat?",
+            "I think it's dinner time! What's for dinner?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "food"
+              }
+            }
+          ]
+        },
+        "helloAgainInConversation": {
+          "messages": [
+            "Hmmm... I thought we were talking about something else...",
+            "Sorry, I was chasing a ball here... weren't we talking about something else?",
+            "Hello again!",
+            "Hi hi!",
+            "Hi hi hi!"
+          ]
+        },
+        "helloMaybeSomeoneElse": {
+          "messages": [
+            "Hello? Is there someone else there?",
+            "Are you saying hi to me?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "someone_else_in_conversation"
+              }
+            }
+          ]
+        },
+        "changingConversationFromFood": {
+          "messages": [
+            "Hello! I'm still hungry! What do you have for me?",
+            "Not too fast! I smell food! What do you have there?",
+            "Hi hi hi! Food food food! I want food! Give me, give me. What's for dinner?",
+            "Good try! But you won't get my attention away from food! What's to eat?"
+          ]
+        },
+        "learnAboutGoodDay": {
+          "messages": [
+            "Nice! So glad to hear that.",
+            "That's amazing.",
+            "Tell me more",
+            "I'm so glad to hear it."
+          ]
+        },
+        "learnAboutBadDay": {
+          "messages": [
+            "Oh, sorry to hear that! But don't worry, we can have fun together.",
+            "Too bad. But I'm sure tomorrow it will be much better"
+          ]
+        },
+        "iDontLikeThatFood": {
+          "messages": [
+            "I don't like eating {{params.food}}!. Do you have something else?",
+            "What? Do you wan't me to eat {{params.food}}. That's not for a refined dog like me. Do you have something different?",
+            "Don't you have anything else? I don't like {{params.food}}"
+          ]
+        },
+        "startEatingOfferedFood": {
+          "messages": [
+            "Yes! Thank you very much. I love {{params.food}}"
+          ],
+          "edits": [
+            {
+              "put": "state",
+              "values": {
+                "activity": "eating"
+              }
+            },
+            {
+              "clear": "context"
+            }
+          ]
+        },
+        "startCheeringUp": {
+          "messages": [
+            "I think I might be sad! Can you cheer me up?",
+            "I'm kind of low. Can you do something to cheer me up?",
+            "I'm depresed. Can you cheer me up?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "cheer_up"
+              }
+            }
+          ]
+        },
+        "startReceivedALetter": {
+          "messages": [
+            "You got a letter! Do you want to know where it is from?",
+            "I saw something on the mail. Do you want to know what is it?",
+            "I think you have a letter! Do you want it?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "whats_in_letter"
+              }
+            }
+          ]
+        },
+        "startImHungry": {
+          "messages": [
+            "I'm hungry! Can you feed me?",
+            "I'm really really hungry. Can I have something to eat?",
+            "I'm starving. Would you give me something to eat?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "food"
+              }
+            }
+          ]
+        },
+        "startFleasConversation": {
+          "messages": [
+            "You bought me Flea Shampoo! Do you think I have fleas?",
+            "Why did you buy me Flea Shampoo? Do I have fleas?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "fleas"
+              }
+            }
+          ]
+        },
+        "startChipsConversation": {
+          "messages": [
+            "Have you got chips upstairs?",
+            "Did you buy chips?",
+            "Do you have chips?",
+            "Am I hearing you eating chips?",
+            "Are those chips?",
+            "Is that the crunchy sound of chips?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "chips"
+              }
+            }
+          ]
+        },
+        "startBeingWetConversation": {
+          "messages": [
+            "I got wet outside. Will you let me in?",
+            "I'm all wet and dirty. Would you let me inside the house?",
+            "I want to come in, but I'm all wet. Would you let me in?",
+            "I had fun running on the water. Can I come in to dry up?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "coming_inside_wet"
+              }
+            }
+          ]
+        },
+        "startCatLivesConversation": {
+          "messages": [
+            "Did you know cats have nine lives?",
+            "Is it true that cats have nine lives?",
+            "I heared that cats have nine lives. Is that true?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "cat_nine_lives"
+              }
+            }
+          ]
+        },
+        "startWorkConversation": {
+          "messages": [
+            "Are you going to work or vacation soon?",
+            "Are you on your way out?",
+            "Do you have to go to work?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "leaving"
+              }
+            }
+          ]
+        },
+        "startChasingTailConversation": {
+          "messages": [
+            "I like chasing my tail. Do you like chasing your tail too?",
+            "Do you like chasing your tail? I like chasing mine."
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "chasing_tail"
+              }
+            }
+          ]
+        },
+        "howToChearUp": {
+          "messages": [
+            "Tell me how you will do that?",
+            "What would you do to chear me up?",
+            "Nice! What are we doing?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "chear_up_idea"
+              }
+            }
+          ]
+        },
+        "tellAboutLetter": {
+          "messages": [
+            "From the Bank I think. Do you know how I know?",
+            "From your boss. Do you know how I know?",
+            "I think this is from your partner. Do you know how I know?",
+            "I think it is from the IRS. Do you know how I know?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "know_how_know_letter"
+              }
+            }
+          ]
+        },
+        "nameFleas": {
+          "messages": [
+            "I do and I promised Paul, John, Ringo & George they could stay. They're the Fleatles . Do you like the name?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "like_names"
+              }
+            }
+          ]
+        },
+        "eatChipsToo": {
+          "messages": [
+            "I want to eat chips too. Can I?",
+            "Oh, I want some chips myself. Would you give me some?",
+            "Would you give me some?",
+            "Can I have some chips too?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "allow_chips"
+              }
+            }
+          ]
+        },
+        "wetEverything": {
+          "messages": [
+            "Thanks! Now I'm just going to shake the water out on the couch. Do you have a mop?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "have_mop"
+              }
+            }
+          ]
+        },
+        "areDogLivesBetter": {
+          "messages": [
+            "Yes - I'm not jealous but they have crappy nine lives. Don't you agree?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "agree_dog_life"
+              }
+            }
+          ]
+        },
+        "askToStay": {
+          "messages": [
+            "Please come back soon. I feel lonely without you. I forget what you look like if you're gone for more than 10 mins."
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "bye"
+              }
+            }
+          ]
+        },
+        "askAboutChasingTails": {
+          "messages": [
+            "That's great! We can chase our tails together. Do you want to know what I hate about tails though?"
+          ],
+          "edits": [
+            {
+              "set": "context",
+              "values": {
+                "expecting": "yes_no",
+                "for_question": "what_about_tails"
+              }
+            }
+          ]
+        },
+        "finishing": {
+          "messages": [
+            "Well... I think it is time for me to go back to sleep.",
+            "I think I'm going to take a nap. Let's talk later!.",
+            "It's getting late. Let's talk later!"
+          ]
+        },
+        "changeSubject": {
+          "messages": [
+            "Okay",
+            "No problem",
+            "I see",
+            "Never mind then",
+            "Understood"
+          ]
+        }
+      },
+
+      "conditions": {
+        "nothing_pending": {
+          "op": "and",
+          "params": [
+            {
+              "op": "exists",
+              "params": [
+                "{{knowledge.owner_name}}"
+              ]
+            },
+            {
+              "op": "notExists",
+              "params": [
+                "{{context.expecting}}"
+              ]
+            },
+            {
+              "op": "notExists",
+              "params": [
+                "{{state.activity}}"
+              ]
+            }
+          ]
+        }
+      },
+      "names": [
+        "Dodo",
+        "Jax",
+        "Rex",
+        "Sherlock",
+        "August",
+        "Bones",
+        "Milo"
+      ]
+    }
+  ]
+}
